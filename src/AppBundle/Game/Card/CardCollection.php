@@ -180,24 +180,12 @@ class CardCollection
             'rechableDistance' => null
         ];
         $this->addItem(new Effect('Saloon', '5', 'hearts', $effects));
-        $this->shuffle();
+        shuffle($this->items);
     }
 
-    public function addItem(Card $card, $key = null)
+    public function addItem(Card $card)
     {
-            $this->items[] = $card;
-    }
-    
-    public function shuffle()
-    {
-        $this->shuffle($this->items);
+        $this->items[] = $card;
     }
 
-    public function draw($n)
-    {
-        for ($i = 1; $i++; $i <= $n) {
-            $cards[] = array_shift($this->items);
-        }
-        return $cards;
-    }
 }

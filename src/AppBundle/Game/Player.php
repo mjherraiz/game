@@ -12,6 +12,8 @@ class Player
     protected $bullets;
 
     protected $hand;
+    
+    protected $active;
 
     public function init(Character $character, Role $role, $weapon = null, $hand = null)
     {
