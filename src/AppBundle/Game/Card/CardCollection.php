@@ -180,52 +180,24 @@ class CardCollection
             'rechableDistance' => null
         ];
         $this->addItem(new Effect('Saloon', '5', 'hearts', $effects));
+        $this->shuffle();
     }
 
     public function addItem(Card $card, $key = null)
     {
-        if ($key == null) {
             $this->items[] = $card;
-        } else {
-            if (isset($this->items[$key])) {
-                throw new \LogicException("Key $key already in use.");
-            } else {
-                $this->items[$key] = $card;
-            }
+    }
+    
+    public function shuffle()
+    {
+        $this->shuffle($this->items);
+    }
+
+    public function draw($n)
+    {
+        for ($i = 1; $i++; $i <= $n) {
+            $cards[] = array_shift($this->items);
         }
-    }
-
-    public function deleteItem($key)
-    {
-        if (isset($this->items[$key])) {
-            unset($this->items[$key]);
-        } else {
-            throw new \LogicException("Invalid key $key.");
-        }
-    }
-
-    public function getItem($key)
-    {
-        if (isset($this->items[$key])) {
-            return $this->items[$key];
-        } else {
-            throw new \LogicException("Invalid key $key.");
-        }
-    }
-
-    public function keys()
-    {
-        return array_keys($this->items);
-    }
-
-
-    public function length()
-    {
-        return count($this->items);
-    }
-
-    public function keyExists($key)
-    {
-        return isset($this->items[$key]);
+        return $cards;
     }
 }
