@@ -2,9 +2,16 @@
 namespace AppBundle\Game\Card;
 
 
+/**
+ * Class Weapon
+ * @package AppBundle\Game\Card
+ */
 class Weapon extends Card
 {
-    
+
+    /**
+     * @var
+     */
     protected $reachableDistance;
 
     /**

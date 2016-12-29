@@ -1,20 +1,50 @@
 <?php
 namespace AppBundle\Game;
 
+use AppBundle\Game\Card\Card;
+use AppBundle\Game\Card\CardCollection;
+use AppBundle\Game\Character\Character;
+use AppBundle\Game\Role\Role;
+
+/**
+ * Class Player
+ * @package AppBundle\Game
+ */
 class Player
 {
+    /**
+     * @var Role
+     */
     protected $role;
 
+    /**
+     * @var Character
+     */
     protected $character;
 
+    /**
+     * @var Card
+     */
     protected $weapon;
-
+    /**
+     * @var int
+     */
     protected $bullets;
-
+    /**
+     * @var CardCollection
+     */
     protected $hand;
-    
+    /**
+     * @var bool
+     */
     protected $active;
 
+    /**
+     * @param Character $character
+     * @param Role $role
+     * @param null||Card $weapon
+     * @param null||CardCollection $hand
+     */
     public function init(Character $character, Role $role, $weapon = null, $hand = null)
     {
         $this->character = $character;
@@ -28,7 +58,7 @@ class Player
     }
 
     /**
-     * @return mixed
+     * @return CardCollection
      */
     public function getHand()
     {
@@ -36,7 +66,7 @@ class Player
     }
 
     /**
-     * @param mixed $hand
+     * @param CardCollection $hand
      */
     public function setHand($hand)
     {

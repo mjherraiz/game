@@ -3,42 +3,66 @@
 namespace AppBundle\Game\Card;
 
 
+/**
+ * Class Effect
+ * @package AppBundle\Game\Card
+ */
 class Effect extends Card
 {
-
-
-
+    /**
+     * @var
+     */
     protected $bang;
 
+    /**
+     * @var
+     */
     protected $missed;
 
+    /**
+     * @var
+     */
     protected $regain;
 
+    /**
+     * @var
+     */
     protected $draw;
 
+    /**
+     * @var
+     */
     protected $discard;
 
+    /**
+     * @var
+     */
     protected $anyChosenPlayer;
 
+    /**
+     * @var
+     */
     protected $otherPlayer;
 
+    /**
+     * @var
+     */
     protected $reachablePlayer;
 
+    /**
+     * @var
+     */
     protected $rechableDistance;
 
     /**
      * Effect constructor.
-     * @param $bang
-     * @param $missed
-     * @param $regain
-     * @param $draw
-     * @param $discard
-     * @param $anyChosenPlayer
-     * @param $otherPlayer
-     * @param $reachablePlayer
-     * @param $rechableDistance
+     * @param $name
+     * @param $number
+     * @param $suit
+     * @param $effects
      */
-    public function __construct($name
+ 
+public function __construct($name
         ,$number, $suit,$effects)
     {
         $this->bang = $effects['bang'];
@@ -52,5 +76,8 @@ class Effect extends Card
         $this->rechableDistance = $effects['rechableDistance'];
     }
 
+    /**
+     *
+     */
     public function play(){}
 }
