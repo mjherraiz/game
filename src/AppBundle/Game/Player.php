@@ -5,6 +5,7 @@ use AppBundle\Game\Card\Card;
 use AppBundle\Game\Card\CardCollection;
 use AppBundle\Game\Character\Character;
 use AppBundle\Game\Role\Role;
+use Symfony\Component\Security\Core\User\User;
 
 /**
  * Class Player
@@ -12,6 +13,37 @@ use AppBundle\Game\Role\Role;
  */
 class Player
 {
+
+    /**
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * Player constructor.
+     * @param User $user
+     */
+    public function __construct( $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * @var Role
      */

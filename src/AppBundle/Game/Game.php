@@ -42,7 +42,7 @@ class Game
     /**
      * @param $nplayers
      */
-    public function init($nplayers)
+    public function init()
     {
         $this->buildDeck();
         $this->buildDiscarded();        
@@ -53,6 +53,7 @@ class Game
      */
 
     public function join(Player $player, Character $character){
+        shuffle($this->roles);
         $player->setCharacter($character);
         $player->setRole(new Role(array_shift($this->roles)));
         $this->players[]= $player; 
