@@ -35,27 +35,28 @@ class Game
     protected $players;
 
     /**
+     * @var
+     */
+    protected $roles=['sheriff','rengade','outlaw','outlaw','deputy'];
+    
+    /**
      * @param $nplayers
      */
     public function init($nplayers)
     {
         $this->buildDeck();
-        $this->buildDiscarded();
-        $this->buildPlayers();
-        
+        $this->buildDiscarded();        
     }
 
     /**
      *
      */
-    public function buildPlayers(){
-    $this->players[] = new Player(new Character(5, 'Billy', ''), new Role('sheriff'));
-    $this->players[] = new Player(new Character(3, 'Amanda', ''), new Role('rengade'));
-    $this->players[] = new Player(new Character(4, 'Casssidy', ''), new Role('outlaw'));
-    $this->players[] = new Player(new Character(4, 'Toro Sentado', ''), new Role('outlaw'));
-    $this->players[] = new Player(new Character(3, 'Steve', ''), new Role('deputy')); 
-}
 
+    public function join(Player $player, Character $character){
+        $player->setCharacter($character);
+        $player->setRole(new Role(array_shift($this->roles)));
+        $this->players[]= $player; 
+    }
     /**
      *
      */

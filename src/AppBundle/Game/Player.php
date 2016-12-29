@@ -34,6 +34,86 @@ class Player
      * @var CardCollection
      */
     protected $hand;
+
+    /**
+     * @return Role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param Role $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return Character
+     */
+    public function getCharacter()
+    {
+        return $this->character;
+    }
+
+    /**
+     * @param Character $character
+     */
+    public function setCharacter($character)
+    {
+        $this->character = $character;
+    }
+
+    /**
+     * @return Card
+     */
+    public function getWeapon()
+    {
+        return $this->weapon;
+    }
+
+    /**
+     * @param Card $weapon
+     */
+    public function setWeapon($weapon)
+    {
+        $this->weapon = $weapon;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBullets()
+    {
+        return $this->bullets;
+    }
+
+    /**
+     * @param int $bullets
+     */
+    public function setBullets($bullets)
+    {
+        $this->bullets = $bullets;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+    }
     /**
      * @var bool
      */
