@@ -61,9 +61,9 @@ class Effect extends Card
      * @param $suit
      * @param $effects
      */
- 
-public function __construct($name
-        ,$number, $suit,$effects)
+
+    public function __construct($name
+        , $number, $suit, $effects)
     {
         $this->bang = $effects['bang'];
         $this->missed = $effects['missed'];
@@ -76,8 +76,6 @@ public function __construct($name
         $this->rechableDistance = $effects['rechableDistance'];
     }
 
-    /**
-     *
-     */
-    public function play(){}
+
+
 }
