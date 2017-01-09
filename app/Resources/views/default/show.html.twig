@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+           {% for player in game.players %}
+               User : {{ player.user }}<br>
+               Character : {{ player.character.name }}<br>
+               Role : {{ player.role.name }}<br>
+           {% endfor %}
+    <ul>
+        {% for card in game.deck %}
+            <li>
+                Id:{{ card.id }}<br>
+                Name : {{ card.name }}<br>
+                Number {{ card.number }}<br>
+                Suit :{{ card.suit }}<br>
+                {% if card.type == 'effect' %}
+                    Bang: {{ card.bang }}<br>
+                    Missed: {{ card.missed }}<br>
+                    Regain: {{ card.regain }}<br>
+                    Draw: {{ card.draw }}<br>
+                    Disscard: {{ card.discard }}<br>
+                    anyChosenPlayer: {{ card.anyChosenPlayer }}<br>
+                    otherPlayer: {{ card.otherPlayer }}<br>
+                    reachablePlayer: {{ card.reachablePlayer }}<br>
+                    reachableDistance: {{ card.reachableDistance }}<br>
+                {% elseif card.type == 'weapon' %}
+                    reachableDistance: {{ card.reachableDistance }}<br>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+{% block stylesheets %}
+{% endblock %}

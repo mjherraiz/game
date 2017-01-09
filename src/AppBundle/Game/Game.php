@@ -89,7 +89,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => true,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->deck->addItem(new Effect('Bang', '2', 'clubs', $effects));
         $this->deck->addItem(new Effect('Bang', '3', 'clubs', $effects));
@@ -128,7 +128,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->deck->addItem(new Effect('Missed', '10', 'clubs', $effects));
         $this->deck->addItem(new Effect('Missed', 'J', 'clubs', $effects));
@@ -153,7 +153,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
 
         $this->deck->addItem(new Effect('Beer', '6', 'hearts', $effects));
@@ -172,7 +172,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => 1
+            'reachableDistance' => 1
         ];
 
         $this->deck->addItem(new Effect('Panico', 'J', 'hearts', $effects));
@@ -189,7 +189,7 @@ class Game
             'anyChosenPlayer' => true,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
 
         $this->deck->addItem(new Effect('Cat Balou', '9', 'diamonds', $effects));
@@ -205,7 +205,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
 
         $this->deck->addItem(new Effect('Stagecoach', '9', 'spades', $effects));
@@ -219,7 +219,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->deck->addItem(new Effect('Wells Fargo', '3', 'hearts', $effects));
 
@@ -231,7 +231,7 @@ class Game
             'anyChosenPlayer' => true,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->deck->addItem(new Effect('Gatling', '10', 'hearts', $effects));
 
@@ -243,7 +243,7 @@ class Game
             'anyChosenPlayer' => true,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->deck->addItem(new Effect('Saloon', '5', 'hearts', $effects));
         shuffle($this->deck->items);

@@ -3,6 +3,7 @@
 namespace AppBundle\Document;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * @MongoDB\Document
@@ -26,7 +27,7 @@ class Game
      */
     public $discarted;
     /**
-     * @MongoDB\Field(type="collection")
+     *@MongoDB\ReferenceMany(targetDocument="Player", cascade="all")
      */
     protected $players;
 
@@ -38,6 +39,7 @@ class Game
 
     public function __construct()
     {
+        $this->setRoles();
         $this->addDeck(new Weapon('Schofield', 'J', 'clubs', 2));
         $this->addDeck(new Weapon('Schofield', 'Q', 'clubs', 2));
         $this->addDeck(new Weapon('Winchester', '8', 'spades', 5));
@@ -55,7 +57,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => true,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->addDeck(new Effect('Bang', '2', 'clubs', $effects));
         $this->addDeck(new Effect('Bang', '3', 'clubs', $effects));
@@ -94,7 +96,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->addDeck(new Effect('Missed', '10', 'clubs', $effects));
         $this->addDeck(new Effect('Missed', 'J', 'clubs', $effects));
@@ -119,7 +121,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
 
         $this->addDeck(new Effect('Beer', '6', 'hearts', $effects));
@@ -138,7 +140,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => 1
+            'reachableDistance' => 1
         ];
 
         $this->addDeck(new Effect('Panico', 'J', 'hearts', $effects));
@@ -155,7 +157,7 @@ class Game
             'anyChosenPlayer' => true,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
 
         $this->addDeck(new Effect('Cat Balou', '9', 'diamonds', $effects));
@@ -171,7 +173,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
 
         $this->addDeck(new Effect('Stagecoach', '9', 'spades', $effects));
@@ -185,7 +187,7 @@ class Game
             'anyChosenPlayer' => null,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->addDeck(new Effect('Wells Fargo', '3', 'hearts', $effects));
 
@@ -197,7 +199,7 @@ class Game
             'anyChosenPlayer' => true,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->addDeck(new Effect('Gatling', '10', 'hearts', $effects));
 
@@ -209,12 +211,12 @@ class Game
             'anyChosenPlayer' => true,
             'otherPlayer' => null,
             'reachablePlayer' => null,
-            'rechableDistance' => null
+            'reachableDistance' => null
         ];
         $this->addDeck(new Effect('Saloon', '5', 'hearts', $effects));
         shuffle($this->deck);
     }
-    
+
     /**
      * Get id
      *
@@ -315,9 +317,9 @@ class Game
      * @param collection $roles
      * @return $this
      */
-    public function setRoles($roles)
+    public function setRoles()
     {
-        $this->roles = $roles;
+        $this->roles =['sheriff','renegade','outlaw','outlaw','deputy'];
         return $this;
     }
 
@@ -328,6 +330,36 @@ class Game
      */
     public function getRoles()
     {
+
         return $this->roles;
+    }
+    /**
+     * Get roles
+     *
+     * @return collection $roles
+     */
+    public function shift()
+    {
+
+        return array_shift($this->roles);
+    }
+    /**
+     * Add player
+     *
+     * @param AppBundle\Document\Player $player
+     */
+    public function addPlayer(\AppBundle\Document\Player $player)
+    {
+        $this->players[] = $player;
+    }
+
+    /**
+     * Remove player
+     *
+     * @param AppBundle\Document\Player $player
+     */
+    public function removePlayer(\AppBundle\Document\Player $player)
+    {
+        $this->players->removeElement($player);
     }
 }

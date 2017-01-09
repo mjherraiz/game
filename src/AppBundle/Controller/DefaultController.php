@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Document\Character;
+use AppBundle\Document\Player;
+use AppBundle\Document\Role;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Document\Game;
@@ -33,7 +36,6 @@ class DefaultController extends Controller
         return new Response('Created game id ' . $game->getId());
 
     }
-
     /**
      * @Route("/game/show/{id}", name="show")
      */
@@ -42,21 +44,56 @@ class DefaultController extends Controller
         $game = $this->get('doctrine_mongodb')
             ->getRepository('AppBundle:Game')
             ->find($id);
-        return new Response('Game id ' . $game->getId());
+        return $this->render('default/show.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
+            'game' => $game
+        ]);
 
         if (!$game) {
             throw $this->createNotFoundException('No game found for id ' . $id);
         }
-
-        // do something, like pass the $game object into a template
+        
     }
-
+    /**
+     * @Route("/game/list", name="list")
+     */
     public function listAction()
     {
-        $this->get('doctrine_mongodb')
+        $games = $this->get('doctrine_mongodb')
             ->getRepository('AppBundle:Game')
             ->findAll();
+        return $this->render('default/list.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
+            'games' => $games
+        ]);
     }
+    /**
+     * @Route("/game/join/{gameId}", name="join")
+     */
+    public function joinAction($gameId)
+    {
+        $game = $this->get('doctrine_mongodb')
+            ->getRepository('AppBundle:Game')
+            ->findOneBy(array('id'=>$gameId));
+
+        $user = $this->get('security.token_storage')->getToken();
+        $player = new Player();
+        $player->setCharacter(new Character(5, 'Casssidy', ''));
+        if(count($game->getRoles()) > 0) {
+            var_dump(count($game->getRoles()));
+            $player->setRole(new Role($game->shift(), ''));
+            $player->setUser($user);
+            $game->addPlayer($player);
+            $dm = $this->get('doctrine_mongodb')->getManager();
+            $dm->persist($game);
+            $dm->flush();
+        }
+        return $this->render('default/show.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir') . '/..') . DIRECTORY_SEPARATOR,
+            'game' => $game
+        ]);
+    }    
+    
 //    /**
 //     * @Route("/game", name="game")
 //     */

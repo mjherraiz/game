@@ -106,4 +106,11 @@ class Card
     {
         return $this->suit;
     }
+    const TYPE = 'Card';
+
+    public static function getType()
+    {
+        $c = get_called_class();
+        return $c::TYPE;
+    }
 }

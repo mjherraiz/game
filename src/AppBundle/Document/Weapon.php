@@ -9,6 +9,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  */
 class Weapon extends Card
 {
+    const TYPE = 'weapon';
     /**
      * @MongoDB\Field(type="int")
      */
@@ -51,4 +52,6 @@ class Weapon extends Card
     {
         return $this->reachableDistance;
     }
+
+
 }

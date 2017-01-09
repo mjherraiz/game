@@ -11,8 +11,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  */
 class Effect extends Card
 {
-
-
+    const TYPE = 'effect';
     /**
      * @MongoDB\Field(type="int")
      */
@@ -56,7 +55,7 @@ class Effect extends Card
     /**
      * @MongoDB\Field(type="int")
      */
-    protected $rechableDistance;
+    protected $reachableDistance;
 
     /**
      * Effect constructor.
@@ -65,7 +64,7 @@ class Effect extends Card
      * @param $suit
      * @param $effects
      */
-    public function __construct($name,$number,$suit,$effects)
+    public function __construct($name, $number, $suit, $effects)
     {
         $this->setName($name);
         $this->setNumber($number);
@@ -78,7 +77,7 @@ class Effect extends Card
         $this->anyChosenPlayer = $effects['anyChosenPlayer'];
         $this->otherPlayer = $effects['otherPlayer'];
         $this->reachablePlayer = $effects['reachablePlayer'];
-        $this->rechableDistance = $effects['rechableDistance'];
+        $this->reachableDistance = $effects['reachableDistance'];
     }
 
 
@@ -258,25 +257,26 @@ class Effect extends Card
         return $this->reachablePlayer;
     }
 
+
     /**
-     * Set rechableDistance
+     * Set reachableDistance
      *
-     * @param int $rechableDistance
+     * @param int $reachableDistance
      * @return $this
      */
-    public function setRechableDistance($rechableDistance)
+    public function setReachableDistance($reachableDistance)
     {
-        $this->rechableDistance = $rechableDistance;
+        $this->reachableDistance = $reachableDistance;
         return $this;
     }
 
     /**
-     * Get rechableDistance
+     * Get reachableDistance
      *
-     * @return int $rechableDistance
+     * @return int $reachableDistance
      */
-    public function getRechableDistance()
+    public function getReachableDistance()
     {
-        return $this->rechableDistance;
+        return $this->reachableDistance;
     }
 }
